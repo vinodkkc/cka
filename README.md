@@ -12,11 +12,10 @@ kubectl get replace --force -f <file-name>
 kubectl apply -f <file-name> --force
 ```
 
-- Schedule a pod on a specific node Method 1
+- Schedule a pod on a specific node Method 1 (Label the node)
 
 ```bash
 kubectl label node <node-name> <label-key>=<label-value>
-kubectl taint node <node-name> <taint-key>=<taint-value>:<taint-effect>
 ```
 - Schedule a pod on a specific node
 
@@ -33,7 +32,7 @@ spec:
 ```
 
 
-- Schedule a pod on a specific node Method 2
+- Schedule a pod on a specific node Method 2 (Node name)
 
 ```kubectl
 kubectl -n default run pod-name --image=nginx:latest --restart=Never --node=<node-name>
@@ -50,7 +49,7 @@ spec:
     - name: nginx
 ```
 
-- Schedule a pod on a specific node Method 3
+- Schedule a pod on a specific node Method 3 (Taints and Tolerations)
 
 - Taint the node
 
