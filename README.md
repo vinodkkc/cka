@@ -79,3 +79,44 @@ spec:
 selector:
   matchLabels:
     app: App1   
+```
+
+- filter with kubectl
+```bash
+kubectl get pods -n default -l tier=db
+NAME         READY   STATUS    RESTARTS   AGE
+db-1-d2hlf   1/1     Running   0          10m
+db-2-hpnnx   1/1     Running   0          10m
+db-1-fcr54   1/1     Running   0          10m
+db-1-b79wp   1/1     Running   0          10m
+db-1-c76z8   1/1     Running   0          10m
+
+kubectl get pods -n default -l env=dev
+NAME          READY   STATUS    RESTARTS   AGE
+db-1-d2hlf    1/1     Running   0          10m
+app-1-7tmj2   1/1     Running   0          10m
+db-1-fcr54    1/1     Running   0          10m
+app-1-qcr4m   1/1     Running   0          10m
+app-1-tz9qx   1/1     Running   0          10m
+db-1-b79wp    1/1     Running   0          10m
+db-1-c76z8    1/1     Running   0          10m
+```
+- describe pod to list the labels on a pod
+  
+```bash
+kubectl describe pod/db-1-d2hlf -n default
+Name:             db-1-d2hlf
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             controlplane/192.2.163.8
+Start Time:       Tue, 26 Sep 2023 03:05:48 +0000
+Labels:           env=dev
+                  tier=db
+Annotations:      <none>
+Status:           Running
+IP:               10.42.0.14
+IPs:
+  IP:           10.42.0.14
+Controlled By:  ReplicaSet/db-1
+```
