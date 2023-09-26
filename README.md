@@ -120,3 +120,8 @@ IPs:
   IP:           10.42.0.14
 Controlled By:  ReplicaSet/db-1
 ```
+
+- filter --no-headers
+```bash
+kubectl get pods -n default -l env=dev --no-headers | wc -l
+```
