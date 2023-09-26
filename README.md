@@ -70,5 +70,12 @@ spec:
     operator: "Equal"
     value: "gpu"
     effect: "NoSchedule"
-
 ```
+
+### Label and Selectors
+
+- Important Note: labels mentioned in pod TEMPLATE are actual labels, which must be selected by deployment or service to connect with pod (connection), so deployment and services uses
+```yaml
+selector:
+  matchLabels:
+    app: App1   
