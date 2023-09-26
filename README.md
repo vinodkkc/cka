@@ -125,3 +125,7 @@ Controlled By:  ReplicaSet/db-1
 ```bash
 kubectl get pods -n default -l env=dev --no-headers | wc -l
 ```
+- filter multiple labels
+```bash
+kubectl get all -A -l env=prod,bu=finance,tier=frontend
+```
