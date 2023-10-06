@@ -129,3 +129,32 @@ kubectl get pods -n default -l env=dev --no-headers | wc -l
 ```bash
 kubectl get all -A -l env=prod,bu=finance,tier=frontend
 ```
+
+- Taints & tolerations
+```bash
+kubectl taint nodes node1 key=value:NoSchedule
+kubectl taint nodes node1 key=value:NoExecute
+kubectl taint nodes node1 key=value:PreferNoSchedule
+```
+- Noschedule: No new pods will be scheduled on the node but existing pods will continue to run
+- NoExecute: No new pods will be scheduled on the node and existing pods will be terminated (evicted) if they do not tolerate the taint
+- PreferNoSchedule: Kubernetes will try to avoid scheduling new pods on the node but there is no guarantee
+
+- Taints & tolerations example
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+    - name: nginx
+      image: nginx:latest  # Fixed the indentation here
+  tolerations:             # tolerations are used to tolerate the taints
+    - key: "key"           # key of the taint
+      operator: "Equal"    # Fixed the indentation for the following lines
+      value: "value"       # value of the taint
+      effect: "NoSchedule" # effect of the taint
+```
+
+    
