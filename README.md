@@ -162,3 +162,4 @@ spec:
 
 - kube-scheduler decides where to place pods in the cluster (Note: kube-scheduler is not a pod, it is a process running on the master node & it does not run on the worker node, further it does not responsible for running the pod on the node)
 - kublet is responsible for running the pod on the node & it runs on the worker node.
+- kubeadm tool does not install kublet, it is the responsibility of the admin to install kublet on the worker node.(manually)
