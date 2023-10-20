@@ -140,6 +140,9 @@ kubectl taint nodes node1 key=value:PreferNoSchedule
 - NoExecute: No new pods will be scheduled on the node and existing pods will be terminated (evicted) if they do not tolerate the taint
 - PreferNoSchedule: Kubernetes will try to avoid scheduling new pods on the node but there is no guarantee
 
+- Note: Taints tells node to except only those pods which have tolerations for the taints, but taints does not guarantee that pods will be scheduled on the node, it just tells node to except only those pods which have tolerations for the taints
+
+- Note: if you have certain requirement to restrict a pod to certain node, it will achieve by using nodeaffinity.
 - Taints & tolerations example
 ```yaml
 apiVersion: v1
@@ -157,4 +160,5 @@ spec:
       effect: "NoSchedule" # effect of the taint
 ```
 
-    
+- kube-scheduler decides where to place pods in the cluster (Note: kube-scheduler is not a pod, it is a process running on the master node & it does not run on the worker node, further it does not responsible for running the pod on the node)
+- kublet is responsible for running the pod on the node
