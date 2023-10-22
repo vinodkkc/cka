@@ -4,7 +4,8 @@
 
 - kubernetes cheat sheet   https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 - kubernetes documentation https://kubernetes.io/docs/home/
-
+- kubectl https://kubernetes.io/docs/reference/kubectl/conventions/
+- 
 - Important Commands
 
 ```bash
