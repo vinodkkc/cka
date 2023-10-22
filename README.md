@@ -191,3 +191,51 @@ kubectl rollout restart --help
 kubectl rollout pause --help
 kubectl rollout resume --help
 ```
+
+- ReplicaSet
+- Note: ReplicaSet is the next generation of Replication Controller, ReplicaSet is the new way of creating Replication Controller.
+- Replicaset yaml
+```yaml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-replicaset
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+      type: front-end
+  template:
+    metadata:
+      labels:
+        app: myapp
+        type: front-end
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+ ```
+    
+```bash
+kubectl create -f replicaset-definition.yaml
+kubectl get replicaset
+kubectl get rs
+kubectl describe replicaset myapp-replicaset
+kubectl delete replicaset myapp-replicaset
+kubectl replace -f replicaset-definition.yaml
+kubectl scale --replicas=6 -f replicaset-definition.yaml
+kubectl scale --replicas=6 replicaset myapp-replicaset
+kubectl scale --replicas=6 rs/myapp-replicaset
+kubectl edit replicaset myapp-replicaset
+kubectl rollout status replicaset myapp-replicaset
+kubectl rollout history replicaset myapp-replicaset
+kubectl rollout undo replicaset myapp-replicaset
+kubectl rollout undo replicaset myapp-replicaset --to-revision=2
+kubectl rollout restart replicaset myapp-replicaset
+kubectl rollout pause replicaset myapp-replicaset
+kubectl rollout resume replicaset myapp-replicaset
+```
