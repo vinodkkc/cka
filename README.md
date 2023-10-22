@@ -239,3 +239,11 @@ kubectl rollout restart replicaset myapp-replicaset
 kubectl rollout pause replicaset myapp-replicaset
 kubectl rollout resume replicaset myapp-replicaset
 ```
+
+- kubectl explain will list the fields of the resource, for example apiVersion, kind, metadata, spec, status etc.
+```bash
+kubectl explain pods    # list the fields of the pod
+kubectl explain pod.spec # list the fields of the spec of pod
+kubectl exaplain replicaset # list the fields of the replicaset
+kubectl explain replicaset.spec # list the fields of the spec of replicaset
+```
