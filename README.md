@@ -169,3 +169,25 @@ spec:
 ```bash
 kubectl run redis --image=redis:latest -n default --dry-run=client -o yaml > pod-definition.yaml
 ```
+
+### kubectl help
+```bash
+kubectl run --help
+kubectl create --help
+kubectl expose --help
+kubectl get --help
+kubectl describe --help
+kubectl delete --help
+kubectl edit --help
+kubectl label --help
+kubectl annotate --help
+kubectl scale --help
+kubectl autoscale --help
+kubectl rollout --help
+kubectl rollout history --help
+kubectl rollout undo --help
+kubectl rollout status --help
+kubectl rollout restart --help
+kubectl rollout pause --help
+kubectl rollout resume --help
+```
