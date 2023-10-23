@@ -323,3 +323,36 @@ export ETCDCTL_API=3
 ```bash
 kubectl exec etcd-controlplane -n kube-system -- sh -c "ETCDCTL_API=3 etcdctl get / --prefix --keys-only --limit=10 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt --key /etc/kubernetes/pki/etcd/server.key"
 ```
+
+### Kubernetes Yaml fixation tools
+- kubeval:
+- Validates your Kubernetes configuration files against the official Kubernetes schemas, It can identify misconfigurations but doesn't necessarily automatically fix them.
+```bash
+ curl -L https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz | tar xvz
+sudo cp kubeval /usr/local/bin
+kubeval my-k8s-deployment.yaml
+```
+
+- kube-score:
+- kube-score is a tool that performs static code analysis of your Kubernetes object definitions. The output is a list of recommendations of what you can improve to make your application more secure and resilient.
+```bash
+curl -L https://github.com/zegl/kube-score/releases/download/v1.13.0/kube-score_1.13.0_linux_amd64.tar.gz | tar xvz
+sudo cp kube-score /usr/local/bin
+kube-score score my-k8s-deployment.yaml
+```
+
+- kube-linter:
+- kube-linter is a static analysis tool that checks Kubernetes YAML files and Helm charts to ensure the applications represented in them adhere to best practices.
+```bash
+curl -L https://github.com/stackrox/kube-linter/releases/download/0.2.5/kube-linter-linux.tar.gz | tar xvz
+sudo cp kube-linter /usr/local/bin
+kube-linter lint my-k8s-deployment.yaml
+```
+
+- pluto:
+- Pluto is a CLI tool to help discover deprecated apiVersions in Kubernetes. Pluto will examine Kubernetes manifests, cluster-wide, and report on deprecated apiVersions it finds.
+```bash
+curl -L https://github.com/FairwindsOps/pluto/releases/download/v5.18.5/pluto_5.18.5_linux_amd64.tar.gz | tar xvz
+sudo mv pluto /usr/local/bin/
+helm template -f values.yaml ./ | pluto detect -
+```
